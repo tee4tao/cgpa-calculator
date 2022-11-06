@@ -855,7 +855,7 @@ export let FourPoints = () => {
                 <td>
                   <input
                     type="text"
-                    placeholder="course 26"
+                    placeholder="course 2"
                     className="courses"
                   />
                 </td>

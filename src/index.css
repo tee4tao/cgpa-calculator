@@ -331,6 +331,7 @@ td {
   width: 100vw;
   min-height: 100vh;
   position: fixed;
+  top: 0;
   display: none;
 }
 .show-overlay {
