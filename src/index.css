@@ -258,6 +258,7 @@ four points page
 table,
 tbody {
   width: 100%;
+  margin-bottom: 3rem;
 }
 th {
   margin-top: 1rem;
@@ -302,11 +303,12 @@ td {
 }
 .compute-btn {
   display: block;
-  /* margin: 0.5rem auto; */
+  margin: 0.5rem auto;
+  /* margin-top: 5rem; */
   background-color: #49a6e9;
   border: transparent;
   color: white;
-  width: 100%;
+  width: 90%;
   height: 2.5rem;
   font-size: 1.2rem;
   letter-spacing: 1px;
@@ -316,6 +318,7 @@ td {
   transition: all linear 0.3s;
   position: fixed;
   bottom: 0;
+  right: 5%;
 }
 .compute-btn:hover {
   background-color: #a5d5f8;

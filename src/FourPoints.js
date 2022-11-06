@@ -2,9 +2,19 @@ import { useState } from "react";
 import { useGlobalContext } from "./context";
 export let FourPoints = () => {
   let [classOfDegree, setClassOfDegree] = useState("");
-  let { openResultModal, closeResultModal, resultModal, calcGP, setCalcGP } =
-    useGlobalContext();
+  let {
+    openResultModal,
+    closeResultModal,
+    resultModal,
+    calcGP,
+    setCalcGP,
+    prevCGPA,
+    setPrevCGPA,
+    prevUnits,
+    setPrevUnits,
+  } = useGlobalContext();
   let handleSubmit = () => {
+    console.log(prevCGPA * prevUnits);
     // console.log(document.getElementsByClassName("units-select"));
     if (
       document.getElementsByClassName("units-select").length > 0 &&
@@ -27,25 +37,42 @@ export let FourPoints = () => {
         acc += curr;
         return acc;
       }, 0);
-      let totalUnit = testUnit.reduce((curr, acc) => {
-        acc += curr;
-        return acc;
-      }, 0);
-      let gpValue = (totalSum / totalUnit).toFixed(2);
-      setCalcGP(gpValue);
-      if (gpValue >= 3.5) {
-        setClassOfDegree("first class");
-      } else if (gpValue >= 3.0) {
-        setClassOfDegree("second class upper");
-      } else if (gpValue >= 2.0) {
-        setClassOfDegree("second class lower");
-      } else if (gpValue >= 1.0) {
-        setClassOfDegree("third class");
+      let currentUnit = parseInt(
+        testUnit.reduce((curr, acc) => {
+          acc += curr;
+          return acc;
+        }, 0)
+      );
+      let gpValue = (totalSum / currentUnit).toFixed(2);
+      if (prevUnits > 0) {
+        let previousCalc = prevCGPA * prevUnits;
+        let currentCalc = gpValue * currentUnit;
+        let totalUnits = parseInt(prevUnits) + currentUnit;
+        let totalCGPA = ((previousCalc + currentCalc) / totalUnits).toFixed(2);
+        setCalcGP(totalCGPA);
+        // console.log(totalUnits);
+        // console.log(previousCalc);
+        // console.log(currentCalc);
+        // console.log((previousCalc + currentCalc) / totalUnits);
       } else {
-        setClassOfDegree("pass");
+        setCalcGP(gpValue);
+        if (gpValue >= 3.5) {
+          setClassOfDegree("first class");
+        } else if (gpValue >= 3.0) {
+          setClassOfDegree("second class upper");
+        } else if (gpValue >= 2.0) {
+          setClassOfDegree("second class lower");
+        } else if (gpValue >= 1.0) {
+          setClassOfDegree("third class");
+        } else if (gpValue >= 0.5) {
+          setClassOfDegree("no degree!");
+        } else if (gpValue === "NaN") {
+          setCalcGP(0);
+          setClassOfDegree("no degree!");
+        }
       }
       console.log(
-        (totalSum / totalUnit).toFixed(2)
+        typeof (totalSum / currentUnit).toFixed(2)
         // Math.round((totalSum / totalUnit + Number.EPSILON) * 100) / 100
       );
       openResultModal();
@@ -76,14 +103,29 @@ export let FourPoints = () => {
           <label htmlFor="previous-cgpa" className="previous-cgpa_label">
             previous CGPA (2 d.p or more)
           </label>
-          <input type="number" id="previous-cgpa" placeholder="0" />
+          <input
+            type="number"
+            id="previous-cgpa"
+            placeholder="0"
+            value={prevCGPA}
+            onChange={(e) => setPrevCGPA(e.target.value)}
+          />
           <label
             htmlFor="previous_total-unit"
             className="previous_total-unit-label"
           >
             total units for previous sessions
           </label>
-          <input type="number" id="previous_total-unit" placeholder="0" />
+          <input
+            type="number"
+            id="previous_total-unit"
+            placeholder="0"
+            value={prevUnits}
+            onChange={(e) => setPrevUnits(e.target.value)}
+          />
+          {/* {console.log(prevCGPA)}
+          {console.log(prevUnits)}
+          {console.log(prevCGPA * prevUnits)} */}
         </form>
         <article className="table">
           <table>
@@ -855,7 +897,7 @@ export let FourPoints = () => {
                 <td>
                   <input
                     type="text"
-                    placeholder="course 2"
+                    placeholder="course 26"
                     className="courses"
                   />
                 </td>

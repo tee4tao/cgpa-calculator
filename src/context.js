@@ -9,6 +9,8 @@ const AppProvider = ({ children }) => {
   let [resultModal, setResultModal] = useState(false);
   let [calcGP, setCalcGP] = useState("");
   let [classOfDegree, setClassOfDegree] = useState("");
+  let [prevCGPA, setPrevCGPA] = useState("");
+  let [prevUnits, setPrevUnits] = useState("");
   let openToggle = () => {
     setToggle(true);
   };
@@ -41,6 +43,10 @@ const AppProvider = ({ children }) => {
         closeResultModal,
         calcGP,
         setCalcGP,
+        prevCGPA,
+        setPrevCGPA,
+        prevUnits,
+        setPrevUnits,
       }}
     >
       {children}
