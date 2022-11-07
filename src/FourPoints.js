@@ -50,6 +50,25 @@ export let FourPoints = () => {
         let totalUnits = parseInt(prevUnits) + currentUnit;
         let totalCGPA = ((previousCalc + currentCalc) / totalUnits).toFixed(2);
         setCalcGP(totalCGPA);
+        if (prevCGPA > 4) {
+          setCalcGP(`error`);
+        } else if (prevCGPA > 0 && currentUnit == 0) {
+          setCalcGP(prevCGPA);
+          if (prevCGPA >= 3.5) {
+            setClassOfDegree("first class");
+          } else if (prevCGPA >= 3.0) {
+            setClassOfDegree("second class upper");
+          } else if (prevCGPA >= 2.0) {
+            setClassOfDegree("second class lower");
+          } else if (prevCGPA >= 1.0) {
+            setClassOfDegree("third class");
+          } else {
+            setClassOfDegree("no degree!");
+          }
+        } /*else if (gpValue === "NaN") {
+          setCalcGP(0);
+          setClassOfDegree("no degree!");
+        }*/
         // console.log(totalUnits);
         // console.log(previousCalc);
         // console.log(currentCalc);
@@ -64,7 +83,7 @@ export let FourPoints = () => {
           setClassOfDegree("second class lower");
         } else if (gpValue >= 1.0) {
           setClassOfDegree("third class");
-        } else if (gpValue >= 0.5) {
+        } else if (gpValue < 1) {
           setClassOfDegree("no degree!");
         } else if (gpValue === "NaN") {
           setCalcGP(0);
