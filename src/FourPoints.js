@@ -16,7 +16,6 @@ export let FourPoints = () => {
     setPrevUnits,
   } = useGlobalContext();
   let handleSubmit = () => {
-    console.log(prevCGPA * prevUnits);
     // console.log(document.getElementsByClassName("units-select"));
     if (
       document.getElementsByClassName("units-select").length > 0 &&
@@ -34,7 +33,6 @@ export let FourPoints = () => {
       for (var i = 0; i < testUnit.length; i++) {
         sum.push(testUnit[i] * testPoint[i]);
       }
-      console.log(sum);
       let totalSum = sum.reduce((curr, acc) => {
         acc += curr;
         return acc;
@@ -76,10 +74,6 @@ export let FourPoints = () => {
           setCalcGP(0);
           setClassOfDegree("no degree!");
         }*/
-        // console.log(totalUnits);
-        // console.log(previousCalc);
-        // console.log(currentCalc);
-        // console.log((previousCalc + currentCalc) / totalUnits);
       } else {
         setCalcGP(gpValue);
         // if (gpValue >= 3.5) {
@@ -97,10 +91,6 @@ export let FourPoints = () => {
         //   setClassOfDegree("no degree!");
         // }
       }
-      console.log(
-        typeof (totalSum / currentUnit).toFixed(2)
-        // Math.round((totalSum / totalUnit + Number.EPSILON) * 100) / 100
-      );
       openResultModal();
     }
   };

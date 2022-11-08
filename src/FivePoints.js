@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useGlobalContext } from "./context";
+import { Link } from "react-router-dom";
 export let FivePoints = () => {
   let [classOfDegree, setClassOfDegree] = useState("");
   let {
@@ -14,7 +16,6 @@ export let FivePoints = () => {
     setPrevUnits,
   } = useGlobalContext();
   let handleSubmit = () => {
-    console.log(prevCGPA * prevUnits);
     // console.log(document.getElementsByClassName("units-select"));
     if (
       document.getElementsByClassName("units-select").length > 0 &&
@@ -32,7 +33,6 @@ export let FivePoints = () => {
       for (var i = 0; i < testUnit.length; i++) {
         sum.push(testUnit[i] * testPoint[i]);
       }
-      console.log(sum);
       let totalSum = sum.reduce((curr, acc) => {
         acc += curr;
         return acc;
@@ -50,35 +50,69 @@ export let FivePoints = () => {
         let totalUnits = parseInt(prevUnits) + currentUnit;
         let totalCGPA = ((previousCalc + currentCalc) / totalUnits).toFixed(2);
         setCalcGP(totalCGPA);
-        // console.log(totalUnits);
-        // console.log(previousCalc);
-        // console.log(currentCalc);
-        // console.log((previousCalc + currentCalc) / totalUnits);
-      } else {
-        setCalcGP(gpValue);
-        if (gpValue >= 4.5) {
-          setClassOfDegree("first class");
-        } else if (gpValue >= 3.5) {
-          setClassOfDegree("second class upper");
-        } else if (gpValue >= 2.4) {
-          setClassOfDegree("second class lower");
-        } else if (gpValue >= 1.5) {
-          setClassOfDegree("third class");
-        } else if (gpValue >= 0.5) {
-        } else if (gpValue >= 1.0) {
-          setClassOfDegree("pass");
-        } else if (gpValue === "NaN") {
+        if (prevCGPA > 5) {
+          setCalcGP(`error`);
+          setClassOfDegree("");
+        } else if (prevCGPA == 0 && currentUnit == 0) {
           setCalcGP(0);
           setClassOfDegree("no degree!");
-        }
+        } else if (prevCGPA > 0 && currentUnit == 0) {
+          setCalcGP(prevCGPA);
+          if (prevCGPA >= 4.5) {
+            setClassOfDegree("first class");
+          } else if (prevCGPA >= 3.5) {
+            setClassOfDegree("second class upper");
+          } else if (prevCGPA >= 2.4) {
+            setClassOfDegree("second class lower");
+          } else if (prevCGPA >= 1.5) {
+            setClassOfDegree("third class");
+          } else if (prevCGPA >= 1.0) {
+            setClassOfDegree("pass");
+          } else {
+            setClassOfDegree("no degree!");
+          }
+        } /*else if (gpValue === "NaN") {
+          setCalcGP(0);
+          setClassOfDegree("no degree!");
+        }*/
+      } else {
+        setCalcGP(gpValue);
+        // if (gpValue >= 3.5) {
+        //   setClassOfDegree("first class");
+        // } else if (gpValue >= 3.0) {
+        //   setClassOfDegree("second class upper");
+        // } else if (gpValue >= 2.0) {
+        //   setClassOfDegree("second class lower");
+        // } else if (gpValue >= 1.0) {
+        //   setClassOfDegree("third class");
+        // } else if (gpValue < 1) {
+        //   setClassOfDegree("no degree!");
+        // } else if (gpValue === "NaN") {
+        //   setCalcGP(0);
+        //   setClassOfDegree("no degree!");
+        // }
       }
-      console.log(
-        typeof (totalSum / currentUnit).toFixed(2)
-        // Math.round((totalSum / totalUnit + Number.EPSILON) * 100) / 100
-      );
       openResultModal();
     }
   };
+  useEffect(() => {
+    if (calcGP >= 4.5) {
+      setClassOfDegree("first class");
+    } else if (calcGP >= 3.5) {
+      setClassOfDegree("second class upper");
+    } else if (calcGP >= 2.4) {
+      setClassOfDegree("second class lower");
+    } else if (calcGP >= 1.5) {
+      setClassOfDegree("third class");
+    } else if (prevCGPA >= 1.0) {
+      setClassOfDegree("pass");
+    } else if (calcGP < 1) {
+      setClassOfDegree("no degree!");
+    } else if (calcGP === "NaN") {
+      setCalcGP(0);
+      setClassOfDegree("no degree!");
+    }
+  }, [calcGP]);
   return (
     <>
       <section
@@ -98,6 +132,10 @@ export let FivePoints = () => {
         </div>
       </section>
       <section className="four-points_container">
+        <Link to="/">
+          <button className="back-btn home-btn">Home Page</button>
+        </Link>
+
         <h1 className="four-point_header">GP calculator (5 points)</h1>
         <h3 className="returning-students">for returning students:</h3>
         <form className="previous-records">
