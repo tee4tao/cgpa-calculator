@@ -383,3 +383,12 @@ td {
 .cgpa {
   text-transform: capitalize;
 }
+
+/* 
+============
+resouces-page
+============
+*/
+.resouces-page {
+  text-align: center;
+}

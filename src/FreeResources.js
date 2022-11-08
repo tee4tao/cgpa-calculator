@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export let FreeResources = () => {
   let progress = "Work In Progress";
   return (
-    <section>
+    <section className="resouces-page">
       {alert(progress)}
       <h1>Free Resources</h1>
       <Link to="/">
