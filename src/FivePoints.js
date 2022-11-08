@@ -16,7 +16,6 @@ export let FivePoints = () => {
     setPrevUnits,
   } = useGlobalContext();
   let handleSubmit = () => {
-    // console.log(document.getElementsByClassName("units-select"));
     if (
       document.getElementsByClassName("units-select").length > 0 &&
       document.getElementsByClassName("points-select").length > 0
@@ -71,26 +70,9 @@ export let FivePoints = () => {
           } else {
             setClassOfDegree("no degree!");
           }
-        } /*else if (gpValue === "NaN") {
-          setCalcGP(0);
-          setClassOfDegree("no degree!");
-        }*/
+        }
       } else {
         setCalcGP(gpValue);
-        // if (gpValue >= 3.5) {
-        //   setClassOfDegree("first class");
-        // } else if (gpValue >= 3.0) {
-        //   setClassOfDegree("second class upper");
-        // } else if (gpValue >= 2.0) {
-        //   setClassOfDegree("second class lower");
-        // } else if (gpValue >= 1.0) {
-        //   setClassOfDegree("third class");
-        // } else if (gpValue < 1) {
-        //   setClassOfDegree("no degree!");
-        // } else if (gpValue === "NaN") {
-        //   setCalcGP(0);
-        //   setClassOfDegree("no degree!");
-        // }
       }
       openResultModal();
     }
@@ -162,9 +144,6 @@ export let FivePoints = () => {
             value={prevUnits}
             onChange={(e) => setPrevUnits(e.target.value)}
           />
-          {/* {console.log(prevCGPA)}
-          {console.log(prevUnits)}
-          {console.log(prevCGPA * prevUnits)} */}
         </form>
         <article className="table">
           <table>
@@ -192,14 +171,6 @@ export let FivePoints = () => {
                     <option value="5-unit">5-unit</option>
                     <option value="6-unit">6-unit</option>
                   </select>
-                  {/* {document.getElementsByClassName("units-select").length > 0 &&
-                  console.log(
-                    document.getElementsByClassName("units-select")[0].options
-                      .selectedIndex
-                  )} */}
-                  {/* {console.log(
-                  document.getElementsByClassName("units-select").length
-                )} */}
                 </td>
 
                 <td>

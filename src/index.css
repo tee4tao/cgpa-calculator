@@ -377,3 +377,9 @@ td {
 .home-btn {
   width: 7.5rem;
 }
+.degree-class {
+  text-transform: capitalize;
+}
+.cgpa {
+  text-transform: capitalize;
+}

@@ -51,10 +51,9 @@ export let FourPoints = () => {
         let totalCGPA = ((previousCalc + currentCalc) / totalUnits).toFixed(2);
         setCalcGP(totalCGPA);
         if (prevCGPA > 4) {
-          setCalcGP(`error`);
+          setCalcGP(`error!`);
           setClassOfDegree("");
         } else if (prevCGPA == 0 && currentUnit == 0) {
-          console.log(`gi`);
           setCalcGP(0);
           setClassOfDegree("no degree!");
         } else if (prevCGPA > 0 && currentUnit == 0) {
@@ -120,8 +119,8 @@ export let FourPoints = () => {
         <div className="container">
           <div className="modal-overlay show-modal"></div>
           <div className="calculated-grade">
-            <h3>CGPA: {calcGP}</h3>
-            <h3>{classOfDegree}</h3>
+            <h3 className="cgpa">CGPA: {calcGP}</h3>
+            <h3 className="degree-class">{classOfDegree}</h3>
             <button className="back-btn" onClick={closeResultModal}>
               okay!
             </button>

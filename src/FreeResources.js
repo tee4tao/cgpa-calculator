@@ -1,3 +1,13 @@
+import { Link } from "react-router-dom";
 export let FreeResources = () => {
-  return <h1>free resources</h1>;
+  let progress = "Work In Progress";
+  return (
+    <section>
+      {alert(progress)}
+      <h1>Free Resources</h1>
+      <Link to="/">
+        <button className="back-btn home-btn">Home Page</button>
+      </Link>
+    </section>
+  );
 };
