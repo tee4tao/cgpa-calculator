@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useGlobalContext } from "./context";
+import { Link } from "react-router-dom";
 export let FourPoints = () => {
   let [classOfDegree, setClassOfDegree] = useState("");
   let {
@@ -52,6 +54,11 @@ export let FourPoints = () => {
         setCalcGP(totalCGPA);
         if (prevCGPA > 4) {
           setCalcGP(`error`);
+          setClassOfDegree("");
+        } else if (prevCGPA == 0 && currentUnit == 0) {
+          console.log(`gi`);
+          setCalcGP(0);
+          setClassOfDegree("no degree!");
         } else if (prevCGPA > 0 && currentUnit == 0) {
           setCalcGP(prevCGPA);
           if (prevCGPA >= 3.5) {
@@ -75,20 +82,20 @@ export let FourPoints = () => {
         // console.log((previousCalc + currentCalc) / totalUnits);
       } else {
         setCalcGP(gpValue);
-        if (gpValue >= 3.5) {
-          setClassOfDegree("first class");
-        } else if (gpValue >= 3.0) {
-          setClassOfDegree("second class upper");
-        } else if (gpValue >= 2.0) {
-          setClassOfDegree("second class lower");
-        } else if (gpValue >= 1.0) {
-          setClassOfDegree("third class");
-        } else if (gpValue < 1) {
-          setClassOfDegree("no degree!");
-        } else if (gpValue === "NaN") {
-          setCalcGP(0);
-          setClassOfDegree("no degree!");
-        }
+        // if (gpValue >= 3.5) {
+        //   setClassOfDegree("first class");
+        // } else if (gpValue >= 3.0) {
+        //   setClassOfDegree("second class upper");
+        // } else if (gpValue >= 2.0) {
+        //   setClassOfDegree("second class lower");
+        // } else if (gpValue >= 1.0) {
+        //   setClassOfDegree("third class");
+        // } else if (gpValue < 1) {
+        //   setClassOfDegree("no degree!");
+        // } else if (gpValue === "NaN") {
+        //   setCalcGP(0);
+        //   setClassOfDegree("no degree!");
+        // }
       }
       console.log(
         typeof (totalSum / currentUnit).toFixed(2)
@@ -97,6 +104,22 @@ export let FourPoints = () => {
       openResultModal();
     }
   };
+  useEffect(() => {
+    if (calcGP >= 3.5) {
+      setClassOfDegree("first class");
+    } else if (calcGP >= 3.0) {
+      setClassOfDegree("second class upper");
+    } else if (calcGP >= 2.0) {
+      setClassOfDegree("second class lower");
+    } else if (calcGP >= 1.0) {
+      setClassOfDegree("third class");
+    } else if (calcGP < 1) {
+      setClassOfDegree("no degree!");
+    } else if (calcGP === "NaN") {
+      setCalcGP(0);
+      setClassOfDegree("no degree!");
+    }
+  }, [calcGP]);
   return (
     <>
       <section
@@ -116,6 +139,10 @@ export let FourPoints = () => {
         </div>
       </section>
       <section className="four-points_container">
+        <Link to="/">
+          <button className="back-btn home-btn">Home Page</button>
+        </Link>
+
         <h1 className="four-point_header">GP calculator (4 points)</h1>
         <h3 className="returning-students">for returning students:</h3>
         <form className="previous-records">

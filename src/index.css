@@ -221,6 +221,7 @@ four points page
   color: white;
   padding: 5px;
   border-radius: 5px;
+  margin-top: 2rem;
 }
 .returning-students {
   justify-self: start;
@@ -372,4 +373,7 @@ td {
 .back-btn:hover {
   color: #49a6e9;
   background-color: #f1f5f8;
+}
+.home-btn {
+  width: 7.5rem;
 }
