@@ -1,4 +1,11 @@
-import { FaBars, FaTimes, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaTwitter,
+  FaWhatsapp,
+  FaGithub,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { BsDot } from "react-icons/bs";
 import { Outlet, Link } from "react-router-dom";
 import { useGlobalContext } from "./context";
@@ -49,6 +56,12 @@ export let Sidebar = () => {
               className="twitter social-link"
             >
               <FaTwitter />
+            </a>
+            <a
+              href="https://twitter.com/tee4tao"
+              className="twitter social-link"
+            >
+              <FaLinkedinIn />
             </a>
             <a
               href="https://api.whatsapp.com/send/?phone=%2B2348165013325&text&type=phone_number&app_absent=0"
