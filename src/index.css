@@ -89,7 +89,7 @@ aside
   top: 0;
   left: 0;
   background-color: white;
-  min-height: 100vh;
+  height: 100vh;
   width: 0;
   transition: all linear 0.3s;
   z-index: 2;
@@ -152,17 +152,18 @@ aside
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 .social-link {
   font-size: 1.5rem;
   color: #49a6e9;
 }
-.twitter {
+/* .twitter {
   margin-right: 1rem;
-}
-.whatsapp {
+} */
+/* .whatsapp {
   margin-left: 1rem;
-}
+} */
 @media screen and (max-width: 600px) {
   .show-aside {
     width: 100vw;
@@ -175,10 +176,12 @@ modal
 */
 .modal-overlay {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.504);
+  background-color: rgba(0, 0, 0, 0.5);
   min-height: 100vh;
   min-width: 100vw;
-  display: none;
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
 }
 .modal-container {
   position: fixed;
@@ -187,12 +190,17 @@ modal
   max-width: 90%;
   height: 60vh;
   transition: all linear 0.3s;
-  display: none;
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
 }
 .show-modal {
-  display: grid;
+  visibility: visible;
   place-items: center;
   z-index: 3;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 2s;
 }
 .modal-btn {
   position: absolute;

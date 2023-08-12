@@ -46,26 +46,23 @@ export let Sidebar = () => {
           <div className="footer-info">
             <h3>
               &copy;
-              <span id="date">{year}</span>
+              <span id="date"> {year} </span>
               Calculator Built by TEE4TAO
             </h3>
           </div>
           <div className="social-contacts">
-            <a
-              href="https://twitter.com/tee4tao"
-              className="twitter social-link"
-            >
+            <a href="https://linkedin.com/in/tee4tao" className="social-link">
+              <FaLinkedinIn />
+            </a>
+            <a href="https://github.com/tee4tao" className="social-link">
+              <FaGithub />
+            </a>
+            <a href="https://twitter.com/tee4tao" className="social-link">
               <FaTwitter />
             </a>
             <a
-              href="https://twitter.com/tee4tao"
-              className="twitter social-link"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
               href="https://api.whatsapp.com/send/?phone=%2B2348165013325&text&type=phone_number&app_absent=0"
-              className="whatsapp social-link"
+              className="social-link"
             >
               <FaWhatsapp />
             </a>
